@@ -1,0 +1,20 @@
+---
+- name: Create a user and copy passwd file into users home dir and change ownership
+  hosts: all
+  tasks:
+    - name: creating user
+      user:
+        name: sunny
+        password: sunny
+        home: /tmp/sunny
+        uid: 7071
+        shell: /bin/bash
+        comment: "a lovely user"
+    - name: copying password file
+      copy:
+        src: /etc/passwd
+        dest: /tmp/sunny
+        owner: sunny
+        group: sunny
+
+
